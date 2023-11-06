@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:lazapay_v2/screens/login.dart';
 import 'package:lazapay_v2/screens/onboard_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,7 +20,7 @@ class get_started extends StatelessWidget {
         Icons.arrow_back_ios,
         color: Colors.black,
       ),
-      onPressed: () {Navigator.pop( context, MaterialPageRoute(builder: (context) => onboard_screen(),));}
+      onPressed: () {Navigator.push( context, MaterialPageRoute(builder: (context) => onboard_screen(),));}
     )
       ),
       body: Column(
@@ -27,7 +28,7 @@ class get_started extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text("Let's Get Started",
-            style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 25, fontWeight: FontWeight.w700),),
+            style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 30, fontWeight: FontWeight.w700),),
           ),
 
           SizedBox(
@@ -116,7 +117,7 @@ class get_started extends StatelessWidget {
 
 
             Text("Already have an account?"),
-            TextButton(onPressed: (){}, child: Text("Sign in", style: TextStyle(color: Colors.black),)),
+            TextButton(onPressed: (){Navigator.push( context, MaterialPageRoute(builder: (context) => login_page(),));}, child: Text("Sign in", style: TextStyle(color: Colors.black),)),
 
           // Empty space above the blue container
           Expanded(
@@ -131,7 +132,7 @@ class get_started extends StatelessWidget {
             child: Center(
               child: TextButton(onPressed: (){
                         Navigator.push( context, MaterialPageRoute(builder: (context) => get_started(),));
-                      }, child: Text("Create an account", style: TextStyle(color: Colors.white, fontSize: 20),))
+                      }, child: Text("Create an account", style: TextStyle(color: Colors.white, fontSize: 25),))
             ),
           ),
         ],
