@@ -47,10 +47,35 @@ class get_started extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.facebook, color: Colors.white,),
+                    Icon(Icons.facebook, color: Colors.white,size: 25),
                     SizedBox(width: 10,),
                     Text(
                       'Facebook',
+                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+              ),
+              ),
+          ),
+          
+          Padding(
+            padding: EdgeInsets.fromLTRB(20,10,20,0),
+            child: FilledButton( 
+              onPressed: (){},
+              style: ButtonStyle(
+                fixedSize: MaterialStatePropertyAll(Size(500,70)),
+                backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue), 
+                                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)))
+              ),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(FontAwesomeIcons.twitter, color: Colors.white,size: 25),
+                    SizedBox(width: 10,),
+                    Text(
+                      'Twitter',
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -70,9 +95,10 @@ class get_started extends StatelessWidget {
               ),
               child: Center(
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(FontAwesomeIcons.google, color: Colors.white,),
+                    Icon(FontAwesomeIcons.google, color: Colors.white,size: 20),
                     SizedBox(width: 10,),
                     Text(
                       'Google',
@@ -84,7 +110,9 @@ class get_started extends StatelessWidget {
               ),
           ),
 
-            
+          SizedBox(
+            height: 130,
+          ),
 
 
             Text("Already have an account?"),
