@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lazapay_v2/screens/login.dart';
 import 'package:lazapay_v2/screens/onboard_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lazapay_v2/screens/register.dart';
 
 
 class get_started extends StatelessWidget {
@@ -32,7 +33,7 @@ class get_started extends StatelessWidget {
           ),
 
           SizedBox(
-            height: 200,
+            height: 100,
           ),
 
           Padding(
@@ -127,12 +128,12 @@ class get_started extends StatelessWidget {
           ),
           // Blue accent bottom container
           Container(
-            height: 100, // Adjust the height as needed
+            height: 50, // Adjust the height as needed
             color: Colors.blueAccent, // Blue accent color
             child: Center(
               child: TextButton(onPressed: (){
-                        Navigator.push( context, MaterialPageRoute(builder: (context) => get_started(),));
-                      }, child: Text("Create an account", style: TextStyle(color: Colors.white, fontSize: 25),))
+                        Navigator.push( context, MaterialPageRoute(builder: (context) => register_page(),));
+                      }, child: Text("Create an account", style: TextStyle(color: Colors.white, fontSize: 15),))
             ),
           ),
         ],

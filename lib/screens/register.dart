@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lazapay_v2/screens/get_started.dart';
 
 
-class login_page extends StatelessWidget {
-  const login_page({super.key});
+class register_page extends StatelessWidget {
+  const register_page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class login_page extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("Welcome",
+            child: Text("Sign Up",
             style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 25, fontWeight: FontWeight.w700),),
           ),
         
@@ -36,10 +36,20 @@ class login_page extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 50,),
+          SizedBox(height: 20,),
 
           Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+            child: TextField(
+              decoration: InputDecoration(
+            labelText: 'Email', // Add your label here
+            hintText: 'dartlord@gmail.com', hintStyle: TextStyle(color: Colors.grey.shade400)
+                  ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
             child: TextField(
               decoration: InputDecoration(
             labelText: 'Username', // Add your label here
@@ -49,7 +59,7 @@ class login_page extends StatelessWidget {
           ),
           
           Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
 
             child: TextField(
               decoration: InputDecoration(
@@ -70,8 +80,8 @@ class login_page extends StatelessWidget {
             color: Colors.blueAccent, // Blue accent color
             child: Center(
               child: TextButton(onPressed: (){
-                        Navigator.push( context, MaterialPageRoute(builder: (context) => login_page(),));
-                      }, child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 15),))
+                        Navigator.push( context, MaterialPageRoute(builder: (context) => register_page(),));
+                      }, child: Text("Sign Up", style: TextStyle(color: Colors.white, fontSize: 15),))
             ),
           ),
         ],

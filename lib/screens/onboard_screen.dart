@@ -30,12 +30,12 @@ class _onboard_screenState extends State<onboard_screen> {
 
           Positioned(
             
-            top: 610,
+            top: 480,
             bottom: 40,
             child: Container(
             ////
             height: 100,
-            width: 400,
+            width: 370,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -61,7 +61,7 @@ class _onboard_screenState extends State<onboard_screen> {
                           Padding(
                             padding: EdgeInsets.fromLTRB(0,0,7,0),
                             child: FilledButton(onPressed: (){}, style: ButtonStyle(
-                              fixedSize: MaterialStatePropertyAll(Size(170,65)),
+                              fixedSize: MaterialStatePropertyAll(Size(150,65)),
                               backgroundColor: MaterialStatePropertyAll<Color>(Color.fromARGB(66, 207, 216, 220)), shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)))), child: Text("Men",style: TextStyle(color: Colors.grey)),),
                           ),
 
@@ -69,7 +69,7 @@ class _onboard_screenState extends State<onboard_screen> {
                             padding: EdgeInsets.fromLTRB(7,0,0,0),
                             child: FilledButton(onPressed: (){}, 
                             style: ButtonStyle(
-                              fixedSize: MaterialStatePropertyAll(Size(170,65)),
+                              fixedSize: MaterialStatePropertyAll(Size(150,65)),
                               backgroundColor: MaterialStatePropertyAll<Color>(Colors.blueAccent.shade200), 
                               shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)))
                               ), 
