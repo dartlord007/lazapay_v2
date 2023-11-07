@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:lazapay_v2/screens/get_started.dart';
 
 
-class register_page extends StatelessWidget {
+class register_page extends StatefulWidget {
   const register_page({super.key});
 
+  @override
+  State<register_page> createState() => _register_pageState();
+}
+
+class _register_pageState extends State<register_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
