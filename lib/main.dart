@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lazapay_v2/screens/onboard_screen.dart';
 
-void main() { //shows that the function does not return anything. 
+void main() async { //shows that the function does not return anything. 
+  WidgetsFlutterBinding.ensureInitialized(); 
+  
   runApp (const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -16,6 +17,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-

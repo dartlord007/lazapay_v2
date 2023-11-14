@@ -1,11 +1,41 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, camel_case_types
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lazapay_v2/screens/get_started.dart';
 
 
-class login_page extends StatelessWidget {
+class login_page extends StatefulWidget {
   const login_page({super.key});
+
+  @override
+  State<login_page> createState() => _login_pageState();
+}
+
+class _login_pageState extends State<login_page> {
+
+
+  late final TextEditingController email_controller ;
+
+  late final TextEditingController password_controller ;
+
+  
+
+  @override
+  void initState() {
+    email_controller =  TextEditingController();
+    password_controller =  TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+
+    email_controller.dispose();
+    password_controller.dispose(); //to dispose text after it is no longer required. 
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +99,18 @@ class login_page extends StatelessWidget {
             height: 50, // Adjust the height as needed
             color: Colors.blueAccent, // Blue accent color
             child: Center(
-              child: TextButton(onPressed: (){
-                        Navigator.push( context, MaterialPageRoute(builder: (context) => login_page(),));
-                      }, child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 15),))
+              child: TextButton(onPressed: ()async{
+                           final email = email_controller.text;
+                           final password = password_controller.text;
+                        
+                          try{await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+                            print (UserCredential);
+                            }
+                          catch(e){
+                              print("Something happened");
+                          }
+                            
+                        }, child: Text("Sign In", style: TextStyle(color: Colors.white, fontSize: 15),))
             ),
           ),
         ],
