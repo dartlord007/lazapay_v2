@@ -1,11 +1,8 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, camel_case_types, non_constant_identifier_names
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print, use_build_context_synchronously
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:lazapay_v2/firebase_options.dart';
 import 'package:lazapay_v2/screens/get_started.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 
 class register_page extends StatefulWidget {
@@ -53,14 +50,7 @@ class _register_pageState extends State<register_page> {
       onPressed: () {Navigator.push( context, MaterialPageRoute(builder: (context) => get_started(),));}
     )
       ),
-      body: FutureBuilder(
-          future: Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform,
-            ),
-          builder: (context, snapshot){
-            switch(snapshot.connectionState){
-              case  ConnectionState.done:
-              return Column(
+      body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -115,20 +105,33 @@ class _register_pageState extends State<register_page> {
                            final email = email_controller.text;
                            final password = password_controller.text;
                         
-                            await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-                            print (UserCredential);
+                        try { await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);}
+
+                       on FirebaseAuthException catch(e){
+                        switch (e.code) {
+                          case "weak-password": {ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: const Text('Weak Password, should be at least 6 characters'),
+                                     action: SnackBarAction(
+                                     label: '', onPressed: () {},)));}
+                          case "email-already-in-use": {ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: const Text('Someone is alfeady using that e-mail'),
+                                     action: SnackBarAction(
+                                     label: '', onPressed: () {},)));}
+                          case "invalid-email":{ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: const Text('Invalid e-mail'),
+                                     action: SnackBarAction(
+                                     label: '', onPressed: () {},)));}
+
+                            
+                            break;
+                          default: {print(e.runtimeType);}
+                        }
+                       }
                             
                         }, child: Text("Sign Up", style: TextStyle(color: Colors.white, fontSize: 15),))
               ),
             ),
           ],
-        );
-        default:
-        return const Text('Loading'); //This handles every other scenario apart from the above. If the future is not ready yet, the user will see the loading screen. If the screen has finished rendering, the user will see the column and text fields.         
-              
+        ));
             }
-          },
-      )
-      );
-  }
 }

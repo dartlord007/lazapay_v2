@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lazapay_v2/constants/routes.dart';
+import 'package:lazapay_v2/screens/dashboard.dart';
 import 'package:lazapay_v2/screens/get_started.dart';
 
 
@@ -52,69 +54,90 @@ class _login_pageState extends State<login_page> {
     )
       ),
       body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Welcome",
-            style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 25, fontWeight: FontWeight.w700),),
-          ),
-        
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Text("Please enter your details to continue",textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.black26, fontSize: 15,),
-            ),
-          ),
-
-          SizedBox(height: 50,),
-
-          Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: TextField(
-              decoration: InputDecoration(
-            labelText: 'Username', // Add your label here
-            hintText: 'Kolade Modupe', hintStyle: TextStyle(color: Colors.grey.shade400)
-                  ),
-            ),
-          ),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Welcome",
+                style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 25, fontWeight: FontWeight.w700),),
+              ),
+            
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Text("Please enter your details to continue",textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black26, fontSize: 15,),
+                ),
+              ),
           
-          Padding(
-            padding: const EdgeInsets.all(25.0),
+              SizedBox(height: 50,),
+          
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: TextField(
+                  controller: email_controller,
+                  decoration: InputDecoration(
+              labelText: 'Email', // Add your label here
+              hintText: 'dartlord@gmail.com', hintStyle: TextStyle(color: Colors.grey.shade400)
+                    ),
+                ),
+              ),
+              
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+          
+                child: TextField(
+                  controller: password_controller,
+                decoration: InputDecoration(
+              labelText: 'Password', // Add your label here
+              hintText: 'paswordisgreat', hintStyle: TextStyle(color: Colors.grey.shade400),
+                    ),
+                ),
+              ),
+              // Empty space above the blue container
+              Expanded(
+                child: Container(
+                  color: Colors.white, // You can change the background color here
+                ),
+              ),
+              // Blue accent bottom container
+              Container(
+                height: 50, // Adjust the height as needed
+                color: Colors.blueAccent, // Blue accent color
+                child: Center(
+                  child: TextButton(onPressed: ()async{
 
-            child: TextField(
-              decoration: InputDecoration(
-            labelText: 'Password', // Add your label here
-            hintText: 'paswordisgreat', hintStyle: TextStyle(color: Colors.grey.shade400),
-                  ),
-            ),
-          ),
-          // Empty space above the blue container
-          Expanded(
-            child: Container(
-              color: Colors.white, // You can change the background color here
-            ),
-          ),
-          // Blue accent bottom container
-          Container(
-            height: 50, // Adjust the height as needed
-            color: Colors.blueAccent, // Blue accent color
-            child: Center(
-              child: TextButton(onPressed: ()async{
-                           final email = email_controller.text;
-                           final password = password_controller.text;
-                        
-                          try{await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-                            print (UserCredential);
-                            }
-                          catch(e){
-                              print("Something happened");
-                          }
+                            try{
+                             final email = email_controller.text;
+                             final password = password_controller.text;    
                             
-                        }, child: Text("Sign In", style: TextStyle(color: Colors.white, fontSize: 15),))
-            ),
-          ),
-        ],
-      )
-      );
+                             await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+                             
+                             Navigator.pushNamedAndRemoveUntil(context, mainRoute, (route) => false);
+
+                              }
+                            on FirebaseAuthException catch(e){
+                               switch (e.code) {
+                                 case "user-not-found":{ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: const Text('User Not Found'),
+                                     action: SnackBarAction(
+                                     label: '', onPressed: () {},)));}
+                                 case "invalid-email":{ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: const Text('Invalid e-mail'),
+                                     action: SnackBarAction(
+                                     label: '', onPressed: () {},)));}
+                                 case "INVALID_LOGIN_CREDENTIALS":{ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: const Text('Invalid login Credentials'),
+                                     action: SnackBarAction(
+                                     label: '', onPressed: () {},)));}
+                                 default: print(e.code);
+                               }
+                                
+                                }
+                                
+                            }, child: Text("Sign In", style: TextStyle(color: Colors.white, fontSize: 15),))
+                ),
+              ),
+            ],
+          )
+    );
   }
 }
