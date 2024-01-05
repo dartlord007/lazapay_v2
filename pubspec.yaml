@@ -75,6 +75,7 @@ flutter:
     - images/hoodie2.png
     - images/hoodie3.png
     - images/hoodie4.png
+    - images/Logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

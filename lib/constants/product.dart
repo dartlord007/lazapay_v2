@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Product {
-  final String image, title, description;
+  final String image, title, description, type;
   final int price, size, id;
   // final Color color;
 
   Product(
       {required this.image,
       required this.title,
+      required this.type,
       required this.description,
       required this.price,
       required this.size,
@@ -19,37 +20,41 @@ class Product {
 List<Product> products = [
   Product(
       id: 1,
-      title: "Office Code",
+      title: "Nike Sportswear Club",
+      type: "Fleece",
       price: 234,
       size: 12,
-      description: dummyText,
+      description: "\$99",
       image: "images/hoodie1.png",
       // color: Color(0xFF3D82AE)
       ),
   Product(
       id: 2,
-      title: "Belt Bag",
+      title: "Trail Running Jacket Nike",
+      type: "Windrunner",
       price: 234,
       size: 8,
-      description: dummyText,
+      description: "\$99",
       image: "images/hoodie2.png",
       // color: Color(0xFFD3A984)
       ),
   Product(
       id: 3,
-      title: "Hang Top",
+      title: "Training Top",
+      type: "Nike Sport Clash",
       price: 234,
       size: 10,
-      description: dummyText,
+      description: "\$99",
       image: "images/hoodie3.png",
       // color: Color(0xFF989493)
       ),
   Product(
       id: 4,
-      title: "Old Fashion",
+      title: "Trail Running Jacket Nike",
+      type: "Windrunner",
       price: 234,
       size: 11,
-      description: dummyText,
+      description: "\$99",
       image: "images/hoodie4.png",
       // color: Color(0xFFE6B398)
       ),
